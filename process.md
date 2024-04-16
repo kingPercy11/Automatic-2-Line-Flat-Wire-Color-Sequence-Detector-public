@@ -20,11 +20,14 @@
 * Alarm Sound:
         The play_alarm function plays an alarm sound using the simpleaudio library. 
         It loads a WAV file and plays it when called.
-                  
+
+* Draw Cross:
+        The draw_cross function draws a cross at the center of the detected position on the image.
+  
 * Main Process:
         The main part of the code prompts the user for an image path, 
         removes the background,
         detects the position of each color, 
         checks if the colors are sorted correctly,
         and prints the result. 
-        If the colors are not sorted correctly, it plays an alarm sound.
+        If the colors are not sorted correctly, it plays an alarm sound and displays the original image with the cross at the wire.
