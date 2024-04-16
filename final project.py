@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
-import simpleaudio as sa
+# import simpleaudio as sa
+
 
 def remove_background(image_path):
     image = cv2.imread(image_path)
@@ -64,16 +65,33 @@ def check_sorted(arr):
     return "Correct"
 
 
+def draw_cross(image, x_coord):
+    if x_coord is not None:
+        cross_size = 10
+        color = (0, 0, 255)  
+        thickness = 2
+        center_y = image.shape[0] // 2
+        cv2.line(image, (x_coord - cross_size, center_y), (x_coord + cross_size, center_y), color, thickness)
+        cv2.line(image, (x_coord, center_y - cross_size), (x_coord, center_y + cross_size), color, thickness)
+
+
 # def play_alarm():
 #     wave_obj = sa.WaveObject.from_wave_file("/Users/pranjal/Downloads/youtube_72937.wav")
 #     wave_obj.play()
 
 color=["red","orange", "green", "yellow", "blue", "violet"]
-image_path = input("Enter the image path: ")
+image_path = input("Enter the image path: ")#cropped out image path
 result = remove_background(image_path)
 ans = position(result, thresholds)
 print("wire number with problem:", check_sorted(ans))
 print (color[check_sorted(ans)])
+
+image = cv2.imread('/Users/pranjal/Desktop/main image.png')#path to actual image
+draw_cross(image, ans[check_sorted(ans)])
+cv2.imshow('Image with Cross', image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
 # if(check_sorted(ans)!="Correct"):
 #     play_alarm()
 
